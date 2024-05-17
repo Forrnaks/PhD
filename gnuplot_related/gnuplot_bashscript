@@ -1,0 +1,20 @@
+Diyelim ki bir suru .xvg dosyan var isimleri olan ve otomatik xvg den ps e cevirmen lazim gnuplot ile!
+
+once name=() ile butun isimleri icine koyuyorsun. Sonra basa bir reset her baslangicta resetlesin test.py i diye. Gnuplot islemlerini .py sekline cevirip yapioyrsun bash script yazarken. Burda onemli olan test.py icine dolduracagin yazinin basinda ve sonunda " olmasi lazim. Ve bunu boyle araya aldigin icin aralarda olan " ler sikinti cikariyor. Onun da onune gecmek icin o icerideki tum " lerin basina \ koyuyorsun boylelilkle onlari baska bir yerdenmis gibi algiliyor ve sorun cozuluyor. Ornek:
+
+
+name=(down-2e-1 down-2e-2 down-2e-3 down-2e-4 down-2e-5 down-4e-1 down-4e-2 down-4e-3 down-4e-4 down-4e-5 up-2e-1 up-2e-2 up-2e-3 up-2e-4 up-2e-5 up-4e-1 up-4e-2 up-4e-3 up-4e-4 up-4e-5 )
+
+for name in ${name[@]}
+do
+        echo $name
+        echo "reset
+        set term postscript color enhanced font ',16'
+        set output \"$name-potential.ps\"
+        plot \"$name-potential.xvg\" u 1:2 w l" > test.py
+        gnuplot test.py
+        ps2pdf $name-potential.ps $name-potential.pdf
+done
+
+
+Burdaki resetten onceki " ve w l den sonraki " araligi belli ediyor onlarin hepsini test.py in icine koy demek.
