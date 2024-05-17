@@ -1,0 +1,8 @@
+First you need to define residues gmx_make ndx for up and down state chain A and chain B and v+ and v-
+
+THen you can use 
+
+echo 24 25 | gmx hbond -f v+center10ns.xtc -s topol.tpr -n hbond-y175-t278.ndx -num
+
+When you do this, it will give you as 1 or 0. 1 means hbond 0 means no interaction.
+Then you need to count how many 1 and 0 in the column for that numpy script (ilki eski) Ikinciyi kullan toplu replica analizi yapiyor;
