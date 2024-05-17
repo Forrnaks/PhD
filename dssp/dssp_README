@@ -1,0 +1,9 @@
+gmx make_ndx -f 1/topolextend.tpr -o dssp_v+center.ndx
+a 1-4867 (v+protein) (24 olarak kaydediyor)
+24 & ! t M* (v+ daki M le baslayan her atomu siliyor)
+
+
+Chainleri ikiye ayirdim a ve b diye yoksa ustune yaziyor birbirinin.
+
+gmx do_dssp -ver 4 -s topolextend.tpr -f v+center.xtc -o ss.xpm -n ../dssp_v+prot.ndx -dt 10000
+gmx xpm2ps -f ss.xpm -o ss.eps
